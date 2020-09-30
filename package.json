@@ -1,12 +1,51 @@
 {
   "name": "hooks",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Collection of utility hooks",
+  "source": "src/index.js",
+  "main": "dist/hooks.js",
+  "module": "dist/hooks.module.js",
+  "unpkg": "dist/hooks.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "fix": "eslint --fix --ext .js --ignore-path .gitignore ."
   },
   "keywords": [],
   "author": "maferland",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.10",
+    "microbundle": "^0.12.4",
+    "netlify-shortener": "^2.1.1",
+    "prettier": "^2.0.2",
+    "pretty-quick": "^2.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "eslint",
+      "pretty-quick — staged",
+      "git add *.js"
+    ]
+  },
+  "peerDependencies": {
+    "react": "^16.x",
+    "react-dom": "^16.x"
+  }
 }
