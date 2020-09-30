@@ -1,5 +1,5 @@
 {
-  "name": "hooks",
+  "name": "@maferland/hooks",
   "version": "0.1.0",
   "description": "Collection of utility hooks",
   "source": "src/index.js",
