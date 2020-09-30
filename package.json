@@ -12,7 +12,16 @@
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .js --ignore-path .gitignore ."
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maferland/hooks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maferland/hooks/issues"
+  },
+  "keywords": [
+    "hooks"
+  ],
   "author": "maferland",
   "license": "MIT",
   "devDependencies": {
