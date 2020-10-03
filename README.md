@@ -36,4 +36,4 @@ yarn add @maferland/hooks
 
 ## LICENSE
 
-[MIT][license]
+[MIT](LICENSE)
