@@ -3,6 +3,8 @@ import {useEffect, useRef, useState} from 'react'
 // From Kent C. Dodds
 // https://github.com/kentcdodds/react-hooks/blob/b8dbfcb44051ca374f5528febf2596387f252b44/src/final/02.extra-4.js#L5-L38
 
+const hasLocalStorage = () => window && window.localStorage
+
 const useLocalStorageState = (
   key,
   defaultValue = '',
@@ -22,15 +24,18 @@ const useLocalStorageState = (
   }
   const [loaded, setLoaded] = useState(false)
   const [state, setState] = useState(() => {
-    if (!window || !window.localStorage) {
+    if (!hasLocalStorage()) {
       return
     }
+    const value = lazyLoad()
+    setLoaded(true)
+    return value
   })
 
   const prevKeyRef = useRef(key)
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded || !hasLocalStorage()) {
       return
     }
     const value = lazyLoad()
