@@ -8,21 +8,35 @@ const useLocalStorageState = (
   defaultValue = '',
   {serialize = JSON.stringify, deserialize = JSON.parse} = {},
 ) => {
-  const [state, setState] = useState(() => {
+  const lazyLoad = () => {
     const valueInLocalStorage = window.localStorage.getItem(key)
     if (valueInLocalStorage) {
-      // the try/catch is here in case the localStorage value was set before
-      // we had the serialization in place (like we do in previous extra credits)
       try {
         return deserialize(valueInLocalStorage)
       } catch (error) {
         window.localStorage.removeItem(key)
       }
     }
+
     return typeof defaultValue === 'function' ? defaultValue() : defaultValue
+  }
+  const [loaded, setLoaded] = useState(false)
+  const [state, setState] = useState(() => {
+    if (!window || !window.localStorage) {
+      return
+    }
   })
 
   const prevKeyRef = useRef(key)
+
+  useEffect(() => {
+    if (loaded) {
+      return
+    }
+    const value = lazyLoad()
+    setLoaded(true)
+    return value
+  }, [])
 
   useEffect(() => {
     const prevKey = prevKeyRef.current
