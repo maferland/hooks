@@ -44,6 +44,10 @@ const useLocalStorageState = (
   }, [])
 
   useEffect(() => {
+    if (!hasLocalStorage()) {
+      return
+    }
+
     const prevKey = prevKeyRef.current
     if (prevKey !== key) {
       window.localStorage.removeItem(prevKey)
