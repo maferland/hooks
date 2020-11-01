@@ -1,6 +1,6 @@
 {
   "name": "@maferland/hooks",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Collection of utility hooks",
   "source": "src/index.js",
   "main": "dist/hooks.js",
@@ -36,8 +36,8 @@
     "microbundle": "^0.12.4",
     "prettier": "^2.1.2",
     "pretty-quick": "^2.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "husky": {
     "hooks": {
