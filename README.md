@@ -35,6 +35,7 @@ yarn add @maferland/hooks
 |------|------|--------| ------- |
 | useInterval | [use-interval.js](src/use-interval.js) | [Dan Abramov](https://overreacted.io/making-setinterval-declarative-with-react-hooks/) | Soon ™️ |
 | useLocalStorageState | [use-local-storage-state.js](src/use-local-storage-state.js) | [Kent C. Dodds](https://github.com/kentcdodds/react-hooks/blob/main/src/final/02.extra-4.js#L5-L38) | Soon ™️ |
+| useScrollDirection | [use-scroll-direction.js](src/use-scroll-direction.js) | [Reece Lucas](https://gist.github.com/reecelucas/cd110ece696cca8468db895281fa28cb) | Soon ™️ |
 
 <!-- prettier-ignore-end -->
 
