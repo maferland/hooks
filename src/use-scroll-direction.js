@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import * as React from 'react'
 
 const ScrollDirection = {
   up: 'up',
@@ -9,14 +9,10 @@ const ScrollDirection = {
 // https://gist.github.com/reecelucas/cd110ece696cca8468db895281fa28cb
 
 const useScrollDirection = props => {
-  const {
-    initialDirection = ScrollDirection.up,
-    threshold = 300,
-    off = false,
-  } = props
+  const {initialDirection = ScrollDirection.up, threshold = 300} = props
   const [scrollDirection, setScrollDirection] = React.useState(initialDirection)
 
-  useEffect(() => {
+  React.useEffect(() => {
     let lastScrollY = window.pageYOffset
     let ticking = false
 

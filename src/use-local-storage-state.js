@@ -1,53 +1,34 @@
-import {useEffect, useRef, useState} from 'react'
+import * as React from 'react'
 
-// From Kent C. Dodds
+// First version from Kent C. Dodds
 // https://github.com/kentcdodds/react-hooks/blob/b8dbfcb44051ca374f5528febf2596387f252b44/src/final/02.extra-4.js#L5-L38
 
-const isBrowser = () => typeof window !== 'undefined'
+// SSR Friendly
 
 const useLocalStorageState = (
   key,
   defaultValue = '',
   {serialize = JSON.stringify, deserialize = JSON.parse} = {},
 ) => {
-  const lazyLoad = () => {
+  const [state, setState] = React.useState(() =>
+    typeof defaultValue === 'function' ? defaultValue() : defaultValue,
+  )
+
+  React.useEffect(() => {
     const valueInLocalStorage = window.localStorage.getItem(key)
-    if (valueInLocalStorage) {
-      try {
-        return deserialize(valueInLocalStorage)
-      } catch (error) {
-        window.localStorage.removeItem(key)
-      }
-    }
-
-    return typeof defaultValue === 'function' ? defaultValue() : defaultValue
-  }
-  const [loaded, setLoaded] = useState(false)
-  const [state, setState] = useState(() => {
-    if (!isBrowser()) {
+    if (!valueInLocalStorage) {
       return
     }
-    const value = lazyLoad()
-    setLoaded(true)
-    return value
-  })
-
-  const prevKeyRef = useRef(key)
-
-  useEffect(() => {
-    if (loaded || !isBrowser()) {
-      return
+    try {
+      setState(deserialize(valueInLocalStorage))
+    } catch (error) {
+      window.localStorage.removeItem(key)
     }
-    const value = lazyLoad()
-    setLoaded(true)
-    return value
   }, [])
 
-  useEffect(() => {
-    if (!isBrowser()) {
-      return
-    }
+  const prevKeyRef = React.useRef(key)
 
+  React.useEffect(() => {
     const prevKey = prevKeyRef.current
     if (prevKey !== key) {
       window.localStorage.removeItem(prevKey)
