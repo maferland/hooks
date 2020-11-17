@@ -1,6 +1,6 @@
 {
   "name": "@maferland/hooks",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Collection of utility hooks",
   "source": "src/index.js",
   "main": "dist/hooks.js",
